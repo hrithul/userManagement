@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/public/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Admin Panel</h1>
+    <div class="d-flex justify-content-between mt-4 mb-4">
+      <button class="btn btn-primary" data-toggle="modal" data-target="#createUserModal">Add New User</button>
+      <a class="nav-link border border-danger text-danger rounded" href="/admin/logout">Logout</a>
+    </div>
+
+    <!-- Search Form -->
+    <form action="/admin/panel" method="GET" class="mb-4">
+      <div class="input-group">
+        <input 
+          type="text" 
+          name="search" 
+          class="form-control" 
+          placeholder="Search by username or email" 
+          value="{{searchQuery}}" 
+          aria-label="Search users"
+        >
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+
+    {{#if users}}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each users}}
+            <tr>
+              <td>{{this.username}}</td>
+              <td>{{this.email}}</td>
+              <td>
+                <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editUserModal-{{this._id}}">Edit</button>
+                <form action="/admin/delete/{{this._id}}" method="POST" class="d-inline">
+                  <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <!-- Edit User Modal -->
+            <div class="modal fade" id="editUserModal-{{this._id}}" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form action="/admin/edit/{{this._id}}" method="POST">
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="edit-username-{{this._id}}">Username</label>
+                        <input type="text" name="username" id="edit-username-{{this._id}}" class="form-control" value="{{this.username}}" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="edit-email-{{this._id}}">Email</label>
+                        <input type="email" name="email" id="edit-email-{{this._id}}" class="form-control" value="{{this.email}}" required>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <p class="text-center">No users found.</p>
+    {{/if}}
+
+    <!-- Create User Modal -->
+    <div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createUserModalLabel">Add New User</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="/admin/create" method="POST">
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="create-username">Username</label>
+                <input type="text" name="username" id="create-username" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="create-email">Email</label>
+                <input type="email" name="email" id="create-email" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="create-password">Password</label>
+                <input type="password" name="password" id="create-password" class="form-control" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Add User</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+/* General Styles */
+body {
+  background-color: #f8f9fa; /* Light gray background */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #343a40; /* Darker gray text */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #007bff; /* Primary blue color for headings */
+}
+
+.container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Card Styles */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  background-color: #007bff; /* Primary blue */
+  color: #ffffff;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Form Styles */
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #ced4da; /* Light gray border */
+}
+
+.form-group label {
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  border-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Table Styles */
+.table {
+  background-color: #ffffff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.table th {
+  background-color: #007bff; /* Primary blue */
+  color: #ffffff;
+  border: none;
+}
+
+.table td {
+  border: 1px solid #dee2e6;
+}
+
+.alert {
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.modal-content {
+  border-radius: 10px;
+}
+
+.modal-header {
+  background-color: #007bff; /* Primary blue */
+  color: #ffffff;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+/* Centered Content */
+.text-center {
+  text-align: center;
+}
+
+/* Spacing */
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+/* Utility Classes */
+.btn-block {
+  width: 100%;
+}
+
+.d-inline {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
