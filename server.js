@@ -4,6 +4,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const nocache = require('nocache');
 const dotenv = require('dotenv');
+// const homeRoutes = require('./routes/homeRoutes');
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const flash = require('connect-flash')
@@ -29,7 +30,7 @@ app.use(nocache());
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store: MongoStore.create({
     mongoUrl: 'mongodb://localhost:27017/webapp',
     collectionName: 'sessions'
@@ -52,9 +53,10 @@ app.set('view engine', 'hbs');
 app.use('/public', express.static('public'));
 
 // Routes
-app.get('/', (req, res) => {
-  res.render('index');
-});
+// app.get('/', (req, res) => {
+//   res.render('index');
+// });
+// app.use('/', homeRoutes)
 app.use('/', userRoutes);
 app.use('/admin', adminRoutes);
 
