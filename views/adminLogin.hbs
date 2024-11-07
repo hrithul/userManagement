@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Login</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <title>{{title}}</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LtrjvnR4/Jl6AKQPmjWl36zKU+U6E/iZ5fPKEyldWtUG/5Y5E5E31i5BuNblCEuY" crossorigin="anonymous">
   <link href="/public/css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -12,13 +13,18 @@
     <div class="row justify-content-center mt-5">
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header text-center">
+          <div class="card-header text-center bg-primary">
             <h5 class="text-white mt-2">Admin Login</h5>
           </div>
           <div class="card-body">
-            {{#if error}}
-              <div class="alert alert-danger">{{error}}</div>
+            {{#if flash.error}}
+              <div class="alert alert-danger">{{flash.error}}</div>
             {{/if}}
+
+            {{#if flash.success}}
+              <div class="alert alert-success">{{flash.success}}</div>
+            {{/if}}
+
             <form action="/admin/login" method="POST">
               <div class="form-group">
                 <label for="admin-username">Username</label>
@@ -39,8 +45,8 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2/dist/umd/popper.min.js" integrity="sha384-Gwxnr8MOBy2HeAuD9Fk3yH8sgY97k5HkLW1hbGvD+9mbX1fyDmjA/siA5ExGF4uT" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgEPc4W46lkC7Q/6r2b8v9PpH6N4IV93usSLA4F7zDGtmr5B4b8" crossorigin="anonymous"></script>
 </body>
 </html>
